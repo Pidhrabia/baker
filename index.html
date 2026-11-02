@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flour & Hearth — Artisan Sourdough, Pastries & Custom Cakes</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warmbg: '#FAF7F2',
+                        oat: '#EFEADF',
+                        paper: '#F4EFE6',
+                        espresso: '#231C18',
+                        warmgray: '#786C65',
+                        copper: '#B86E4B',
+                        'copper-dark': '#955334',
+                        crust: '#D4A373'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        hand: ['Caveat', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAF7F2;
+            color: #231C18;
+            background-image: radial-gradient(#231C18 0.4px, transparent 0.4px);
+            background-size: 24px 24px;
+        }
+
+        /* Editorial Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF7F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #B86E4B;
+            border-radius: 4px;
+        }
+
+        .paper-border {
+            border-color: rgba(35, 28, 24, 0.12);
+        }
+
+        /* Tactile Polaroid Style */
+        .polaroid {
+            background: #FFFFFF;
+            padding: 12px 12px 28px 12px;
+            box-shadow: 0 10px 25px -5px rgba(35, 28, 24, 0.08), 0 8px 10px -6px rgba(35, 28, 24, 0.04);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+        .polaroid:hover {
+            transform: translateY(-4px) rotate(0.5deg);
+            box-shadow: 0 20px 30px -10px rgba(35, 28, 24, 0.12);
+        }
+
+        .stamp-badge {
+            border: 2px dashed #B86E4B;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-6deg);
+        }
+
+        /* 100% Reliable Image Fallback Container Styling */
+        .img-fallback-wrapper {
+            position: relative;
+            background: linear-gradient(135deg, #EFEADF 0%, #E2D9C8 100%);
+            overflow: hidden;
+        }
+        .img-fallback-wrapper::before {
+            content: '🌾 Flour & Hearth';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: #8C6D58;
+            opacity: 0.65;
+            background-image: repeating-linear-gradient(45deg, rgba(184, 110, 75, 0.05) 0, rgba(184, 110, 75, 0.05) 10px, transparent 0, transparent 20px);
+        }
+        .img-fallback-wrapper img {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-copper selection:text-warmbg overflow-x-hidden">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-espresso text-oat text-[11px] sm:text-xs font-sans tracking-widest uppercase py-2.5 px-4 text-center border-b border-copper/30">
+        <span>🌾 Fresh Sourdough Deck Ovens Hot at 7:00 AM Daily — 1208 Market Street, Nashville, TN</span>
+    </div>
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-warmbg/95 backdrop-blur-md border-b paper-border transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-copper text-warmbg flex items-center justify-center font-serif font-bold text-xl group-hover:bg-espresso transition-colors">
+                    F&amp;H
+                </div>
+                <div>
+                    <span class="font-serif text-xl sm:text-2xl tracking-tight text-espresso font-semibold block leading-none">Flour &amp; Hearth</span>
+                    <span class="font-sans text-[9px] sm:text-[10px] tracking-widest uppercase text-warmgray block mt-0.5">Artisan Bakery &amp; Cake Lab</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8 font-sans text-xs tracking-widest uppercase text-espresso/80">
+                <a href="#schedule" class="hover:text-copper transition-colors">Bake Schedule</a>
+                <a href="#menu" class="hover:text-copper transition-colors">Menu</a>
+                <a href="#custom-cakes" class="hover:text-copper transition-colors">Custom Cakes</a>
+                <a href="#story" class="hover:text-copper transition-colors">Our Craft</a>
+                <a href="#contact" class="hover:text-copper transition-colors">Visit Us</a>
+            </nav>
+
+            <!-- CTA Action -->
+            <div class="flex items-center gap-3">
+                <a href="#order-form" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-copper text-warmbg text-xs font-sans tracking-widest uppercase font-semibold hover:bg-espresso transition-all shadow-md">
+                    <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                    <span>Order Inquiry</span>
+                </a>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-espresso focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-paper border-b paper-border px-6 py-6 space-y-4 font-sans text-xs tracking-widest uppercase">
+            <a href="#schedule" onclick="toggleMobileMenu()" class="block text-espresso hover:text-copper">Daily Bake Schedule</a>
+            <a href="#menu" onclick="toggleMobileMenu()" class="block text-espresso hover:text-copper">Our Menu Highlights</a>
+            <a href="#custom-cakes" onclick="toggleMobileMenu()" class="block text-espresso hover:text-copper">Custom Cake Studio</a>
+            <a href="#story" onclick="toggleMobileMenu()" class="block text-espresso hover:text-copper">Our Bakery Story</a>
+            <a href="#order-form" onclick="toggleMobileMenu()" class="block text-copper font-bold">Custom Order Form</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[80vh] flex items-center justify-center px-4 sm:px-6 py-12 sm:py-16">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            
+            <!-- Hero Left Copy -->
+            <div class="lg:col-span-7 space-y-6 sm:space-y-8 z-10 text-left">
+                <div class="inline-flex items-center gap-2.5 bg-oat border paper-border px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-copper font-sans text-[11px] sm:text-xs tracking-widest uppercase font-medium">
+                    <span class="w-2 h-2 rounded-full bg-copper animate-pulse"></span>
+                    <span>Handcrafted in Nashville, Tennessee</span>
+                </div>
+
+                <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal leading-[1.1] text-espresso">
+                    Made Slowly. <br>
+                    <span class="italic font-normal text-copper">Shared Happily.</span>
+                </h1>
+
+                <p class="font-sans text-warmgray text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl">
+                    Long-fermentation sourdoughs, hand-laminated butter croissants, and seasonal botanic celebration cakes baked fresh from deck ovens every morning.
+                </p>
+
+                <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                    <a href="#menu" class="px-8 py-4 rounded-full bg-espresso text-warmbg font-sans text-xs tracking-widest uppercase font-semibold hover:bg-copper transition-all shadow-lg flex items-center justify-center gap-3">
+                        <span>Browse Bakery Cabinet</span>
+                        <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#custom-cakes" class="px-8 py-4 rounded-full bg-paper border paper-border text-espresso font-sans text-xs tracking-widest uppercase font-semibold hover:border-copper hover:text-copper transition-all text-center">
+                        Build Custom Cake
+                    </a>
+                </div>
+
+                <!-- Hand-written note accent -->
+                <div class="pt-2 flex items-center gap-3">
+                    <span class="font-hand text-xl sm:text-2xl text-copper font-bold">"Smell the fresh sourdough warm at 7 AM!"</span>
+                    <i data-lucide="sparkles" class="w-5 h-5 text-copper/60"></i>
+                </div>
+            </div>
+
+            <!-- Hero Right Polaroid Image Composition -->
+            <div class="lg:col-span-5 relative mt-6 lg:mt-0">
+                <div class="relative w-full max-w-sm sm:max-w-md mx-auto">
+                    
+                    <!-- Main Polaroid -->
+                    <div class="polaroid rounded-xl transform -rotate-1 sm:-rotate-2 relative z-20">
+                        <div class="img-fallback-wrapper w-full h-64 sm:h-80 rounded-md mb-3">
+                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=1000" 
+                                 onerror="this.style.display='none'" 
+                                 alt="Fresh Sourdough Bread" class="w-full h-64 sm:h-80 object-cover rounded-md">
+                        </div>
+                        <div class="flex justify-between items-center font-hand text-lg sm:text-xl text-espresso">
+                            <span>Heritage Country Sourdough</span>
+                            <span class="text-copper text-sm sm:text-base font-sans font-semibold">$9.50</span>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Overlapping Polaroid -->
+                    <div class="polaroid rounded-xl absolute -bottom-8 -right-4 sm:-bottom-10 sm:-right-6 w-2/3 sm:w-3/4 z-30 transform rotate-3 sm:rotate-6">
+                        <div class="img-fallback-wrapper w-full h-36 sm:h-48 rounded-md mb-2">
+                            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=800" 
+                                 onerror="this.style.display='none'" 
+                                 alt="Butter Croissants" class="w-full h-36 sm:h-48 object-cover rounded-md">
+                        </div>
+                        <div class="font-hand text-base sm:text-lg text-espresso">
+                            <span>French Butter Croissants</span>
+                        </div>
+                    </div>
+
+                    <!-- Decorative Bakery Stamp -->
+                    <div class="stamp-badge absolute -top-6 -left-4 sm:-top-8 sm:-left-6 w-20 h-20 sm:w-24 sm:h-24 bg-warmbg text-copper z-40 p-2 text-center shadow-md">
+                        <span class="font-sans text-[9px] sm:text-[10px] tracking-widest uppercase font-bold leading-tight block">100% Organic Flours</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LIVE FRESH BAKE SCHEDULE (INTERACTIVE TIME TAB SELECTOR) -->
+    <section id="schedule" class="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto border-t paper-border">
+        <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+            <span class="font-sans text-xs tracking-widest uppercase text-copper block mb-2">Oven Timings</span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-normal text-espresso">Fresh From The Deck Ovens</h2>
+            <p class="font-sans text-warmgray text-xs sm:text-sm mt-3">We bake in targeted micro-batches throughout the day to ensure optimal crust and crumb texture.</p>
+        </div>
+
+        <!-- Schedule Time Selector Tabs -->
+        <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-8 sm:mb-12 font-sans text-[11px] sm:text-xs tracking-widest uppercase">
+            <button onclick="switchBakeSlot('700')" id="slot-700" class="px-4 py-3 sm:px-6 sm:py-3.5 rounded-full bg-espresso text-warmbg transition-all font-semibold flex items-center gap-2">
+                <i data-lucide="clock" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+                <span>7:00 AM — Morning Loaves</span>
+            </button>
+            <button onclick="switchBakeSlot('830')" id="slot-830" class="px-4 py-3 sm:px-6 sm:py-3.5 rounded-full bg-paper border paper-border text-espresso hover:border-copper transition-all font-semibold flex items-center gap-2">
+                <i data-lucide="clock" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+                <span>8:30 AM — Viennoiserie</span>
+            </button>
+            <button onclick="switchBakeSlot('1100')" id="slot-1100" class="px-4 py-3 sm:px-6 sm:py-3.5 rounded-full bg-paper border paper-border text-espresso hover:border-copper transition-all font-semibold flex items-center gap-2">
+                <i data-lucide="clock" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+                <span>11:00 AM — Brioche &amp; Tarts</span>
+            </button>
+            <button onclick="switchBakeSlot('1400')" id="slot-1400" class="px-4 py-3 sm:px-6 sm:py-3.5 rounded-full bg-paper border paper-border text-espresso hover:border-copper transition-all font-semibold flex items-center gap-2">
+                <i data-lucide="clock" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+                <span>2:00 PM — Afternoon Baguettes</span>
+            </button>
+        </div>
+
+        <!-- Schedule Card Display Box -->
+        <div class="p-6 sm:p-12 rounded-2xl sm:rounded-3xl bg-paper border paper-border max-w-4xl mx-auto shadow-md" id="bakeDisplayBox">
+            <!-- Dynamic Content Populated via JavaScript -->
+        </div>
+    </section>
+
+    <!-- BAKERY MENU EXPLORER (FILTERABLE GRID) -->
+    <section id="menu" class="py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto border-t paper-border">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+            <div>
+                <span class="font-sans text-xs tracking-widest uppercase text-copper block mb-2">Our Offerings</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-normal text-espresso">The Bakery Cabinet</h2>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap gap-2 sm:gap-2.5 font-sans text-[11px] sm:text-xs tracking-widest uppercase">
+                <button onclick="filterMenu('all')" id="mfilter-all" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-espresso text-warmbg font-semibold transition-all">All Items</button>
+                <button onclick="filterMenu('bread')" id="mfilter-bread" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-paper border paper-border text-espresso hover:border-copper transition-all">Artisan Bread</button>
+                <button onclick="filterMenu('pastry')" id="mfilter-pastry" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-paper border paper-border text-espresso hover:border-copper transition-all">Pastries &amp; Sweets</button>
+                <button onclick="filterMenu('cakes')" id="mfilter-cakes" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-paper border paper-border text-espresso hover:border-copper transition-all">Celebration Cakes</button>
+            </div>
+        </div>
+
+        <!-- Menu Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="menuGrid">
+            
+            <!-- Item 1: Sourdough -->
+            <div class="menu-card bg-warmbg p-5 sm:p-6 rounded-2xl border paper-border shadow-sm hover:shadow-xl transition-all space-y-4" data-category="bread">
+                <div class="h-48 sm:h-56 rounded-xl overflow-hidden relative img-fallback-wrapper">
+                    <img src="https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&q=80&w=800" 
+                         onerror="this.style.display='none'" 
+                         alt="Country Sourdough" class="w-full h-full object-cover">
+                    <span class="absolute top-3 right-3 z-20 bg-espresso text-warmbg text-[10px] font-sans tracking-widest uppercase px-3 py-1 rounded-full font-semibold">$9.50</span>
+                </div>
+                <div>
+                    <span class="font-sans text-[10px] tracking-widest uppercase text-copper block">Artisan Bread</span>
+                    <h3 class="font-serif text-xl sm:text-2xl text-espresso font-normal">Country Sourdough Loaf</h3>
+                    <p class="font-sans text-warmgray text-xs mt-2 leading-relaxed">
+                        36-hour wild yeast fermentation, heritage stone-ground wheat blend, crisp dark blistered crust.
+                    </p>
+                </div>
+                <button onclick="addToOrderInquiry('Country Sourdough Loaf ($9.50)')" class="w-full py-2.5 rounded-xl bg-paper border paper-border text-espresso text-xs font-sans tracking-widest uppercase font-semibold hover:bg-copper hover:text-warmbg transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    <span>Add To Order Inquiry</span>
+                </button>
+            </div>
+
+            <!-- Item 2: Croissant -->
+            <div class="menu-card bg-warmbg p-5 sm:p-6 rounded-2xl border paper-border shadow-sm hover:shadow-xl transition-all space-y-4" data-category="pastry">
+                <div class="h-48 sm:h-56 rounded-xl overflow-hidden relative img-fallback-wrapper">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=800" 
+                         onerror="this.style.display='none'" 
+                         alt="Butter Croissant" class="w-full h-full object-cover">
+                    <span class="absolute top-3 right-3 z-20 bg-espresso text-warmbg text-[10px] font-sans tracking-widest uppercase px-3 py-1 rounded-full font-semibold">$4.75</span>
+                </div>
+                <div>
+                    <span class="font-sans text-[10px] tracking-widest uppercase text-copper block">Viennoiserie</span>
+                    <h3 class="font-serif text-xl sm:text-2xl text-espresso font-normal">Classic Butter Croissant</h3>
+                    <p class="font-sans text-warmgray text-xs mt-2 leading-relaxed">
+                        84-layer hand-laminated pastry crafted with French Normandy butter and organic unbleached flour.
+                    </p>
+                </div>
+                <button onclick="addToOrderInquiry('Classic Butter Croissant ($4.75)')" class="w-full py-2.5 rounded-xl bg-paper border paper-border text-espresso text-xs font-sans tracking-widest uppercase font-semibold hover:bg-copper hover:text-warmbg transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    <span>Add To Order Inquiry</span>
+                </button>
+            </div>
+
+            <!-- Item 3: Cinnamon Roll -->
+            <div class="menu-card bg-warmbg p-5 sm:p-6 rounded-2xl border paper-border shadow-sm hover:shadow-xl transition-all space-y-4" data-category="pastry">
+                <div class="h-48 sm:h-56 rounded-xl overflow-hidden relative img-fallback-wrapper">
+                    <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&q=80&w=800" 
+                         onerror="this.style.display='none'" 
+                         alt="Cardamom Cinnamon Roll" class="w-full h-full object-cover">
+                    <span class="absolute top-3 right-3 z-20 bg-espresso text-warmbg text-[10px] font-sans tracking-widest uppercase px-3 py-1 rounded-full font-semibold">$5.50</span>
+                </div>
+                <div>
+                    <span class="font-sans text-[10px] tracking-widest uppercase text-copper block">Morning Bun</span>
+                    <h3 class="font-serif text-xl sm:text-2xl text-espresso font-normal">Cardamom Cinnamon Knot</h3>
+                    <p class="font-sans text-warmgray text-xs mt-2 leading-relaxed">
+                        Soft brioche dough swirled with freshly ground Saigon cinnamon, Swedish cardamom, and maple glaze.
+                    </p>
+                </div>
+                <button onclick="addToOrderInquiry('Cardamom Cinnamon Knot ($5.50)')" class="w-full py-2.5 rounded-xl bg-paper border paper-border text-espresso text-xs font-sans tracking-widest uppercase font-semibold hover:bg-copper hover:text-warmbg transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    <span>Add To Order Inquiry</span>
+                </button>
+            </div>
+
+            <!-- Item 4: Berry / Chocolate Tart (FIXED RELIABLE PHOTO) -->
+            <div class="menu-card bg-warmbg p-5 sm:p-6 rounded-2xl border paper-border shadow-sm hover:shadow-xl transition-all space-y-4" data-category="pastry">
+                <div class="h-48 sm:h-56 rounded-xl overflow-hidden relative img-fallback-wrapper">
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=800" 
+                         onerror="this.style.display='none'" 
+                         alt="Chocolate Hazelnut Tart" class="w-full h-full object-cover">
+                    <span class="absolute top-3 right-3 z-20 bg-espresso text-warmbg text-[10px] font-sans tracking-widest uppercase px-3 py-1 rounded-full font-semibold">$7.00</span>
+                </div>
+                <div>
+                    <span class="font-sans text-[10px] tracking-widest uppercase text-copper block">Pastry Studio</span>
+                    <h3 class="font-serif text-xl sm:text-2xl text-espresso font-normal">Hazelnut Ganache Tart</h3>
+                    <p class="font-sans text-warmgray text-xs mt-2 leading-relaxed">
+                        Rich Valrhona dark chocolate ganache with toasted hazelnut crust and Maldon sea salt flakes.
+                    </p>
+                </div>
+                <button onclick="addToOrderInquiry('Hazelnut Ganache Tart ($7.00)')" class="w-full py-2.5 rounded-xl bg-paper border paper-border text-espresso text-xs font-sans tracking-widest uppercase font-semibold hover:bg-copper hover:text-warmbg transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    <span>Add To Order Inquiry</span>
+                </button>
+            </div>
+
+            <!-- Item 5: Celebration Cake -->
+            <div class="menu-card bg-warmbg p-5 sm:p-6 rounded-2xl border paper-border shadow-sm hover:shadow-xl transition-all space-y-4" data-category="cakes">
+                <div class="h-48 sm:h-56 rounded-xl overflow-hidden relative img-fallback-wrapper">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=800" 
+                         onerror="this.style.display='none'" 
+                         alt="Botanical Berry Cake" class="w-full h-full object-cover">
+                    <span class="absolute top-3 right-3 z-20 bg-espresso text-warmbg text-[10px] font-sans tracking-widest uppercase px-3 py-1 rounded-full font-semibold">From $65.00</span>
+                </div>
+                <div>
+                    <span class="font-sans text-[10px] tracking-widest uppercase text-copper block">Signature Cake</span>
+                    <h3 class="font-serif text-xl sm:text-2xl text-espresso font-normal">Pressed Botanical Floral Cake</h3>
+                    <p class="font-sans text-warmgray text-xs mt-2 leading-relaxed">
+                        Three-tier vanilla sponge layer cake finished with organic Swiss meringue and edible pressed herbs.
+                    </p>
+                </div>
+                <button onclick="addToOrderInquiry('Pressed Botanical Floral Cake (From $65)')" class="w-full py-2.5 rounded-xl bg-paper border paper-border text-espresso text-xs font-sans tracking-widest uppercase font-semibold hover:bg-copper hover:text-warmbg transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    <span>Add To Order Inquiry</span>
+                </button>
+            </div>
+
+            <!-- Item 6: Baguette -->
+            <div class="menu-card bg-warmbg p-5 sm:p-6 rounded-2xl border paper-border shadow-sm hover:shadow-xl transition-all space-y-4" data-category="bread">
+                <div class="h-48 sm:h-56 rounded-xl overflow-hidden relative img-fallback-wrapper">
+                    <img src="https://images.unsplash.com/photo-1597079910443-60c43fc4f729?auto=format&fit=crop&q=80&w=800" 
+                         onerror="this.style.display='none'" 
+                         alt="French Baguette" class="w-full h-full object-cover">
+                    <span class="absolute top-3 right-3 z-20 bg-espresso text-warmbg text-[10px] font-sans tracking-widest uppercase px-3 py-1 rounded-full font-semibold">$4.50</span>
+                </div>
+                <div>
+                    <span class="font-sans text-[10px] tracking-widest uppercase text-copper block">Traditional Hearth</span>
+                    <h3 class="font-serif text-xl sm:text-2xl text-espresso font-normal">Parisian Tradition Baguette</h3>
+                    <p class="font-sans text-warmgray text-xs mt-2 leading-relaxed">
+                        Crusty exterior with an open, airy wheat interior. Baked directly on stone slabs at 500°F.
+                    </p>
+                </div>
+                <button onclick="addToOrderInquiry('Parisian Tradition Baguette ($4.50)')" class="w-full py-2.5 rounded-xl bg-paper border paper-border text-espresso text-xs font-sans tracking-widest uppercase font-semibold hover:bg-copper hover:text-warmbg transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    <span>Add To Order Inquiry</span>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CUSTOM CAKE BUILDER (TACTILE VISUAL CONFIGURATOR) -->
+    <section id="custom-cakes" class="py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto border-t paper-border">
+        <div class="p-6 sm:p-14 rounded-2xl sm:rounded-3xl bg-paper border paper-border shadow-xl">
+            
+            <div class="max-w-2xl mb-8 sm:mb-12">
+                <span class="font-sans text-xs tracking-widest uppercase text-copper block mb-2">Made to Order</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-normal text-espresso">Custom Celebration Cake Studio</h2>
+                <p class="font-sans text-warmgray text-xs sm:text-sm mt-3">Select your desired cake specifications below to compute an instant estimated price and pre-fill your order request.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <!-- Configurator Controls Left -->
+                <div class="lg:col-span-7 space-y-6 sm:space-y-8 font-sans text-xs">
+                    
+                    <!-- 1. Size Selection -->
+                    <div>
+                        <label class="block text-espresso font-semibold tracking-widest uppercase mb-3">1. Select Cake Size &amp; Servings</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <button onclick="updateCakeConfig('size', '6-inch', 65)" id="csize-6-inch" class="cake-btn p-3.5 sm:p-4 rounded-xl bg-warmbg border paper-border text-left hover:border-copper transition-all border-copper text-copper font-semibold">
+                                <span class="block text-xs sm:text-sm font-bold text-espresso">6-Inch Round</span>
+                                <span class="text-warmgray block mt-0.5">Serves 8-10 • $65</span>
+                            </button>
+                            <button onclick="updateCakeConfig('size', '8-inch', 95)" id="csize-8-inch" class="cake-btn p-3.5 sm:p-4 rounded-xl bg-warmbg border paper-border text-left hover:border-copper transition-all">
+                                <span class="block text-xs sm:text-sm font-bold text-espresso">8-Inch Round</span>
+                                <span class="text-warmgray block mt-0.5">Serves 16-20 • $95</span>
+                            </button>
+                            <button onclick="updateCakeConfig('size', '2-tier', 160)" id="csize-2-tier" class="cake-btn p-3.5 sm:p-4 rounded-xl bg-warmbg border paper-border text-left hover:border-copper transition-all">
+                                <span class="block text-xs sm:text-sm font-bold text-espresso">2-Tier Celebration</span>
+                                <span class="text-warmgray block mt-0.5">Serves 30-35 • $160</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. Sponge Flavor -->
+                    <div>
+                        <label class="block text-espresso font-semibold tracking-widest uppercase mb-3">2. Choose Sponge Recipe</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <button onclick="updateCakeConfig('sponge', 'Tahitian Vanilla', 0)" id="csponge-vanilla" class="cake-btn p-3.5 rounded-xl bg-warmbg border paper-border text-left hover:border-copper transition-all border-copper text-copper font-semibold">
+                                Tahitian Vanilla Bean
+                            </button>
+                            <button onclick="updateCakeConfig('sponge', 'Dutch Cocoa', 0)" id="csponge-chocolate" class="cake-btn p-3.5 rounded-xl bg-warmbg border paper-border text-left hover:border-copper transition-all">
+                                Dark Dutch Cocoa
+                            </button>
+                            <button onclick="updateCakeConfig('sponge', 'Lemon Thyme', 10)" id="csponge-lemon" class="cake-btn p-3.5 rounded-xl bg-warmbg border paper-border text-left hover:border-copper transition-all">
+                                Lemon Earl Grey (+$10)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Frosting Style -->
+                    <div>
+                        <label class="block text-espresso font-semibold tracking-widest uppercase mb-3">3. Frosting Finish &amp; Design</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <button onclick="updateCakeConfig('frosting', 'Semi-Naked Rustic', 0)" id="cfrosting-naked" class="cake-btn p-3.5 rounded-xl bg-warmbg border paper-border text-left hover:border-copper transition-all border-copper text-copper font-semibold">
+                                Semi-Naked Rustic
+                            </button>
+                            <button onclick="updateCakeConfig('frosting', 'Smooth Swiss Meringue', 15)" id="cfrosting-smooth" class="cake-btn p-3.5 rounded-xl bg-warmbg border paper-border text-left hover:border-copper transition-all">
+                                Smooth Swiss Meringue (+$15)
+                            </button>
+                            <button onclick="updateCakeConfig('frosting', 'Textured Floral Palette', 25)" id="cfrosting-textured" class="cake-btn p-3.5 rounded-xl bg-warmbg border paper-border text-left hover:border-copper transition-all">
+                                Textured Palette Knife (+$25)
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Configurator Live Summary Box Right -->
+                <div class="lg:col-span-5 bg-warmbg p-6 sm:p-8 rounded-2xl border paper-border shadow-inner space-y-6">
+                    <div class="flex justify-between items-center border-b paper-border pb-4">
+                        <span class="font-sans text-xs tracking-widest uppercase text-copper font-semibold">Configuration Summary</span>
+                        <i data-lucide="cake" class="w-5 h-5 text-copper"></i>
+                    </div>
+
+                    <div class="space-y-3 font-sans text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-warmgray">Base Size:</span>
+                            <span id="summarySize" class="font-semibold text-espresso">6-Inch Round ($65)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-warmgray">Sponge Flavor:</span>
+                            <span id="summarySponge" class="font-semibold text-espresso">Tahitian Vanilla</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-warmgray">Frosting Finish:</span>
+                            <span id="summaryFrosting" class="font-semibold text-espresso">Semi-Naked Rustic</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t paper-border flex justify-between items-baseline">
+                        <span class="font-serif text-base sm:text-lg text-espresso">Estimated Price:</span>
+                        <span id="summaryTotalPrice" class="font-serif text-2xl sm:text-3xl font-bold text-copper">$65.00</span>
+                    </div>
+
+                    <button onclick="transferCakeToInquiry()" class="w-full py-4 rounded-full bg-espresso text-warmbg font-sans text-xs tracking-widest uppercase font-semibold hover:bg-copper transition-all flex items-center justify-center gap-2 shadow-md">
+                        <span>Transfer Configuration to Inquiry</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- OUR STORY / PHILOSOPHY -->
+    <section id="story" class="py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto border-t paper-border">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            
+            <div class="lg:col-span-6 relative">
+                <div class="polaroid rounded-2xl overflow-hidden shadow-xl max-w-md mx-auto">
+                    <div class="img-fallback-wrapper w-full h-[320px] sm:h-[450px] rounded-md mb-3">
+                        <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&q=80&w=1000" 
+                             onerror="this.style.display='none'" 
+                             alt="Master Baker Shaping Dough" class="w-full h-[320px] sm:h-[450px] object-cover rounded-md">
+                    </div>
+                    <div class="font-hand text-lg sm:text-xl text-espresso text-center">
+                        Head Baker Grace Miller kneading organic sourdough dough.
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-6 space-y-6">
+                <span class="font-sans text-xs tracking-widest uppercase text-copper block">Handcrafted Philosophy</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-normal text-espresso leading-tight">
+                    Flour, Water, Salt, Time. Nothing Artificial.
+                </h2>
+
+                <p class="font-sans text-warmgray text-sm sm:text-base leading-relaxed">
+                    Founded in 2019, Flour &amp; Hearth was built on the belief that real bread requires patience. We source heirloom wheat directly from sustainable mills across Tennessee and allow our wild sourdough starters to ferment naturally for 36 hours.
+                </p>
+
+                <p class="font-sans text-warmgray text-sm sm:text-base leading-relaxed">
+                    Every pastry, tart, and celebration cake is shaped by hand in small batches every morning. When our deck ovens open at 7:00 AM, you are tasting honest traditional craftsmanship.
+                </p>
+
+                <div class="grid grid-cols-2 gap-4 sm:gap-6 pt-4 font-serif">
+                    <div class="p-4 rounded-xl bg-paper border paper-border">
+                        <span class="block text-2xl sm:text-3xl text-copper font-semibold">36 Hours</span>
+                        <span class="font-sans text-[10px] sm:text-xs tracking-widest uppercase text-warmgray mt-1 block">Wild Fermentation</span>
+                    </div>
+                    <div class="p-4 rounded-xl bg-paper border paper-border">
+                        <span class="block text-2xl sm:text-3xl text-copper font-semibold">100% Organic</span>
+                        <span class="font-sans text-[10px] sm:text-xs tracking-widest uppercase text-warmgray mt-1 block">Stone-Ground Wheat</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS & PHOTO GALLERY -->
+    <section class="py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto border-t paper-border">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+            <span class="font-sans text-xs tracking-widest uppercase text-copper block mb-2">Community Notes</span>
+            <h2 class="font-serif text-3xl sm:text-4xl text-espresso">Warm Words From Our Neighbors</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 font-serif mb-16 sm:mb-20">
+            <div class="p-6 sm:p-8 rounded-2xl bg-paper border paper-border space-y-4">
+                <p class="text-base sm:text-lg italic text-espresso leading-relaxed">
+                    "The country sourdough has an incredible blistered crust and open crumb. It's become our Saturday family ritual!"
+                </p>
+                <div class="pt-4 border-t paper-border font-sans text-xs">
+                    <span class="font-bold text-espresso block">Emily P.</span>
+                    <span class="text-warmgray">East Nashville Resident</span>
+                </div>
+            </div>
+
+            <div class="p-6 sm:p-8 rounded-2xl bg-paper border paper-border space-y-4">
+                <p class="text-base sm:text-lg italic text-espresso leading-relaxed">
+                    "We ordered a two-tier botanical cake for our anniversary. Not only was it stunning, but the lemon earl grey sponge was delicious."
+                </p>
+                <div class="pt-4 border-t paper-border font-sans text-xs">
+                    <span class="font-bold text-espresso block">James R.</span>
+                    <span class="text-warmgray">Custom Cake Client</span>
+                </div>
+            </div>
+
+            <div class="p-6 sm:p-8 rounded-2xl bg-paper border paper-border space-y-4">
+                <p class="text-base sm:text-lg italic text-espresso leading-relaxed">
+                    "Best butter croissants outside of Paris. Crisp, flaky, and rich without being greasy. Highly recommend coming at 8:30 AM!"
+                </p>
+                <div class="pt-4 border-t paper-border font-sans text-xs">
+                    <span class="font-bold text-espresso block">Sophie L.</span>
+                    <span class="text-warmgray">Neighborhood Local</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Lightbox Photo Gallery (FIXED WORKING PHOTOS) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+            <div onclick="openLightbox('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=1200', 'Deck Oven Fresh Sourdough')" class="cursor-pointer polaroid group">
+                <div class="img-fallback-wrapper w-full h-36 sm:h-44 rounded-md">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600" onerror="this.style.display='none'" class="w-full h-36 sm:h-44 object-cover rounded-md">
+                </div>
+            </div>
+            <div onclick="openLightbox('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=1200', 'Hand-laminated Croissants')" class="cursor-pointer polaroid group">
+                <div class="img-fallback-wrapper w-full h-36 sm:h-44 rounded-md">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600" onerror="this.style.display='none'" class="w-full h-36 sm:h-44 object-cover rounded-md">
+                </div>
+            </div>
+            <div onclick="openLightbox('https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&q=80&w=1200', 'Custom Botanical Cake Studio')" class="cursor-pointer polaroid group">
+                <div class="img-fallback-wrapper w-full h-36 sm:h-44 rounded-md">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600" onerror="this.style.display='none'" class="w-full h-36 sm:h-44 object-cover rounded-md">
+                </div>
+            </div>
+            <div onclick="openLightbox('https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=1200', 'Chocolate Hazelnut Tart')" class="cursor-pointer polaroid group">
+                <div class="img-fallback-wrapper w-full h-36 sm:h-44 rounded-md">
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600" onerror="this.style.display='none'" class="w-full h-36 sm:h-44 object-cover rounded-md">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- CUSTOM ORDER INQUIRY FORM -->
+    <section id="order-form" class="py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto border-t paper-border">
+        <div class="p-6 sm:p-14 rounded-2xl sm:rounded-3xl bg-paper border paper-border shadow-xl">
+            
+            <div class="text-center max-w-xl mx-auto mb-10 sm:mb-12">
+                <span class="font-sans text-xs tracking-widest uppercase text-copper block mb-2">Direct Order Inquiry</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-normal text-espresso">Place Your Bakery Request</h2>
+                <p class="font-sans text-warmgray text-xs sm:text-sm mt-3">All custom orders &amp; large bakery pick-ups require at least 48 hours notice.</p>
+            </div>
+
+            <form onsubmit="handleOrderSubmit(event)" class="space-y-6 font-sans text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                    <div>
+                        <label class="block text-espresso font-semibold tracking-widest uppercase mb-2">Full Name *</label>
+                        <input type="text" id="formName" required placeholder="e.g. Grace Miller" class="w-full p-3.5 sm:p-4 rounded-xl bg-warmbg border paper-border text-espresso outline-none focus:border-copper">
+                    </div>
+                    <div>
+                        <label class="block text-espresso font-semibold tracking-widest uppercase mb-2">Email Address *</label>
+                        <input type="email" id="formEmail" required placeholder="grace@example.com" class="w-full p-3.5 sm:p-4 rounded-xl bg-warmbg border paper-border text-espresso outline-none focus:border-copper">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                    <div>
+                        <label class="block text-espresso font-semibold tracking-widest uppercase mb-2">Phone Number *</label>
+                        <input type="tel" required placeholder="+1 (615) 555-0112" class="w-full p-3.5 sm:p-4 rounded-xl bg-warmbg border paper-border text-espresso outline-none focus:border-copper">
+                    </div>
+                    <div>
+                        <label class="block text-espresso font-semibold tracking-widest uppercase mb-2">Pick-Up Date</label>
+                        <input type="date" required class="w-full p-3.5 sm:p-4 rounded-xl bg-warmbg border paper-border text-espresso outline-none focus:border-copper">
+                    </div>
+                    <div>
+                        <label class="block text-espresso font-semibold tracking-widest uppercase mb-2">Inquiry Type</label>
+                        <select class="w-full p-3.5 sm:p-4 rounded-xl bg-warmbg border paper-border text-espresso outline-none focus:border-copper">
+                            <option>Custom Celebration Cake</option>
+                            <option>Morning Pastry Box</option>
+                            <option>Artisan Bread Order</option>
+                            <option>Event Catering</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-espresso font-semibold tracking-widest uppercase mb-2">Selected Items &amp; Notes</label>
+                    <textarea id="formDetails" rows="4" placeholder="List items or describe your cake preferences..." class="w-full p-3.5 sm:p-4 rounded-xl bg-warmbg border paper-border text-espresso outline-none focus:border-copper"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-4 sm:py-5 rounded-full bg-espresso text-warmbg font-sans text-xs tracking-widest uppercase font-semibold hover:bg-copper transition-all shadow-lg flex items-center justify-center gap-3">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                    <span>Submit Bakery Request</span>
+                </button>
+            </form>
+
+        </div>
+    </section>
+
+    <!-- FOOTER & VISIT US -->
+    <footer id="contact" class="bg-espresso text-oat py-12 sm:py-16 px-4 sm:px-6 font-sans text-xs tracking-widest uppercase border-t border-copper/30">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-12">
+            
+            <div class="space-y-3">
+                <span class="font-serif text-2xl text-warmbg font-bold lowercase italic block">flour <span class="text-copper font-serif">&amp;</span> hearth</span>
+                <p class="text-warmgray leading-relaxed text-[11px] normal-case">
+                    Handcrafted sourdough bread, viennoiserie pastries, and pressed botanical celebration cakes in Nashville, TN.
+                </p>
+            </div>
+
+            <div>
+                <span class="text-copper font-bold block mb-3">Bakery Storefront</span>
+                <p class="text-warmgray normal-case leading-relaxed">
+                    1208 Market Street<br>
+                    Nashville, TN 37203
+                </p>
+            </div>
+
+            <div>
+                <span class="text-copper font-bold block mb-3">Opening Hours</span>
+                <p class="text-warmgray normal-case leading-relaxed">
+                    Mon: Closed<br>
+                    Tue – Fri: 7:00 AM – 4:00 PM<br>
+                    Sat – Sun: 8:00 AM – 3:00 PM
+                </p>
+            </div>
+
+            <div>
+                <span class="text-copper font-bold block mb-3">Contact &amp; Support</span>
+                <p class="text-warmgray normal-case leading-relaxed">
+                    grace@copperandcrumb.example<br>
+                    +1 (615) 555-0112
+                </p>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-8 border-t border-white/10 text-center text-warmgray text-[10px]">
+            © 2026 FLOUR &amp; HEARTH BAKERY STUDIO. ALL RIGHTS RESERVED. DEMO ILLUSTRATIVE LANDING PAGE.
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-espresso/90 backdrop-blur-md hidden flex flex-col justify-between p-4 sm:p-10" onclick="closeLightbox()">
+        <div class="flex justify-between items-center text-warmbg">
+            <span id="lightboxTitle" class="font-serif text-xl sm:text-2xl italic"></span>
+            <button onclick="closeLightbox()" class="p-2 text-warmgray hover:text-warmbg focus:outline-none">
+                <i data-lucide="x" class="w-7 h-7 sm:w-8 sm:h-8"></i>
+            </button>
+        </div>
+
+        <div class="flex-1 flex items-center justify-center my-4 sm:my-6">
+            <img id="lightboxImg" src="" alt="Full View" class="max-h-[70vh] sm:max-h-[75vh] max-w-full rounded-xl shadow-2xl border paper-border object-contain">
+        </div>
+
+        <div class="text-center text-warmgray text-[11px] sm:text-xs tracking-widest uppercase">
+            <span>Click anywhere to close viewer</span>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT INTERACTION LOGIC -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        // Live Bake Schedule Data & Handler
+        const bakeSlots = {
+            '700': {
+                title: "7:00 AM — Morning Hearth Loaves",
+                desc: "Fresh out of stone deck ovens at 500°F. Crispy, dark-blistered crusts with steaming soft interior sourdough.",
+                items: [
+                    { name: "Country Heritage Sourdough", price: "$9.50" },
+                    { name: "Roasted Garlic & Rosemary Boule", price: "$10.50" },
+                    { name: "100% Whole Rye Sourdough", price: "$9.00" }
+                ]
+            },
+            '830': {
+                title: "8:30 AM — Fresh French Viennoiserie",
+                desc: "Laminated butter pastry tray pulls. Flaky, golden, honeycombed interior layers.",
+                items: [
+                    { name: "Classic French Butter Croissant", price: "$4.75" },
+                    { name: "Pain au Chocolat (Dark Cocoa)", price: "$5.25" },
+                    { name: "Cardamom Cinnamon Swirl Knot", price: "$5.50" }
+                ]
+            },
+            '1100': {
+                title: "11:00 AM — Sweet Brioche & Fruit Tarts",
+                desc: "Mid-morning sweet treats. Rich egg-yolk brioches and freshly assembled seasonal tarts.",
+                items: [
+                    { name: "Tahitian Vanilla Berry Fruit Tart", price: "$7.00" },
+                    { name: "Golden Brioche Feuilletée", price: "$6.50" },
+                    { name: "Pistachio Raspberry Danish", price: "$5.75" }
+                ]
+            },
+            '1400': {
+                title: "2:00 PM — Afternoon Baguette Batch",
+                desc: "Second warm deck oven pull of classic long crisp French tradition baguettes.",
+                items: [
+                    { name: "Parisian Tradition Baguette", price: "$4.50" },
+                    { name: "Sesame Crust Epi Baguette", price: "$5.00" },
+                    { name: "Olive & Herb Focaccia Slab", price: "$6.50" }
+                ]
+            }
+        };
+
+        function switchBakeSlot(slotId) {
+            ['700', '830', '1100', '1400'].forEach(id => {
+                const btn = document.getElementById(`slot-${id}`);
+                if (id === slotId) {
+                    btn.className = 'px-4 py-3 sm:px-6 sm:py-3.5 rounded-full bg-espresso text-warmbg transition-all font-semibold flex items-center gap-2';
+                } else {
+                    btn.className = 'px-4 py-3 sm:px-6 sm:py-3.5 rounded-full bg-paper border paper-border text-espresso hover:border-copper transition-all font-semibold flex items-center gap-2';
+                }
+            });
+
+            const data = bakeSlots[slotId];
+            const box = document.getElementById('bakeDisplayBox');
+            box.innerHTML = `
+                <div class="space-y-4 sm:space-y-6">
+                    <div class="flex justify-between items-baseline border-b paper-border pb-3 sm:pb-4">
+                        <h3 class="font-serif text-xl sm:text-3xl text-espresso font-normal">${data.title}</h3>
+                        <span class="font-sans text-[10px] sm:text-xs tracking-widest text-copper font-bold uppercase">HOT IN OVEN</span>
+                    </div>
+                    <p class="font-sans text-warmgray text-xs sm:text-sm leading-relaxed">${data.desc}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-2">
+                        ${data.items.map(item => `
+                            <div class="p-3.5 sm:p-4 rounded-xl bg-warmbg border paper-border flex justify-between items-center">
+                                <span class="font-sans text-xs font-semibold text-espresso">${item.name}</span>
+                                <span class="font-serif text-xs sm:text-sm font-bold text-copper">${item.price}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize default slot
+        switchBakeSlot('700');
+
+        // Bakery Cabinet Menu Filter
+        function filterMenu(category) {
+            ['all', 'bread', 'pastry', 'cakes'].forEach(cat => {
+                const btn = document.getElementById(`mfilter-${cat}`);
+                if (cat === category) {
+                    btn.className = 'px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-espresso text-warmbg font-semibold transition-all';
+                } else {
+                    btn.className = 'px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-paper border paper-border text-espresso hover:border-copper transition-all';
+                }
+            });
+
+            const items = document.querySelectorAll('.menu-card');
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Custom Cake Configurator State
+        let cakeState = {
+            size: '6-inch',
+            sizeName: '6-Inch Round ($65)',
+            basePrice: 65,
+            sponge: 'Tahitian Vanilla',
+            spongeAddon: 0,
+            frosting: 'Semi-Naked Rustic',
+            frostingAddon: 0
+        };
+
+        function updateCakeConfig(type, value, addonPrice) {
+            if (type === 'size') {
+                cakeState.size = value;
+                cakeState.basePrice = addonPrice;
+                cakeState.sizeName = value === '6-inch' ? '6-Inch Round ($65)' : value === '8-inch' ? '8-Inch Round ($95)' : '2-Tier Celebration ($160)';
+                document.querySelectorAll('#csize-6-inch, #csize-8-inch, #csize-2-tier').forEach(b => b.classList.remove('border-copper', 'text-copper', 'font-semibold'));
+                document.getElementById(`csize-${value}`).classList.add('border-copper', 'text-copper', 'font-semibold');
+            } else if (type === 'sponge') {
+                cakeState.sponge = value;
+                cakeState.spongeAddon = addonPrice;
+                document.querySelectorAll('#csponge-vanilla, #csponge-chocolate, #csponge-lemon').forEach(b => b.classList.remove('border-copper', 'text-copper', 'font-semibold'));
+                const targetId = value.includes('Vanilla') ? 'csponge-vanilla' : value.includes('Cocoa') ? 'csponge-chocolate' : 'csponge-lemon';
+                document.getElementById(targetId).classList.add('border-copper', 'text-copper', 'font-semibold');
+            } else if (type === 'frosting') {
+                cakeState.frosting = value;
+                cakeState.frostingAddon = addonPrice;
+                document.querySelectorAll('#cfrosting-naked, #cfrosting-smooth, #cfrosting-textured').forEach(b => b.classList.remove('border-copper', 'text-copper', 'font-semibold'));
+                const targetId = value.includes('Naked') ? 'cfrosting-naked' : value.includes('Smooth') ? 'cfrosting-smooth' : 'cfrosting-textured';
+                document.getElementById(targetId).classList.add('border-copper', 'text-copper', 'font-semibold');
+            }
+
+            const total = cakeState.basePrice + cakeState.spongeAddon + cakeState.frostingAddon;
+            document.getElementById('summarySize').innerText = cakeState.sizeName;
+            document.getElementById('summarySponge').innerText = cakeState.sponge;
+            document.getElementById('summaryFrosting').innerText = cakeState.frosting;
+            document.getElementById('summaryTotalPrice').innerText = `$${total}.00`;
+        }
+
+        function transferCakeToInquiry() {
+            const total = cakeState.basePrice + cakeState.spongeAddon + cakeState.frostingAddon;
+            const details = `Custom Cake Order ($${total}.00):\n- Size: ${cakeState.sizeName}\n- Sponge: ${cakeState.sponge}\n- Frosting: ${cakeState.frosting}`;
+            document.getElementById('formDetails').value = details;
+            document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function addToOrderInquiry(itemName) {
+            const field = document.getElementById('formDetails');
+            field.value = field.value ? `${field.value}\n- ${itemName}` : `- ${itemName}`;
+            document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Lightbox Modal
+        function openLightbox(src, title) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxTitle').innerText = title;
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
+
+        // Order Submit Handler
+        function handleOrderSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('formName').value;
+            alert(`Thank you, ${name}! Your bakery request has been received. Grace & the team will confirm within 24 hours.`);
+        }
+    </script>
+</body>
+</html>
